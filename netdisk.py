@@ -2,9 +2,11 @@ import os
 class MOUNTnetdisk(object):
 
     def __init__(self):
-        print("="*30)
+        print("="*50)
         print("华\t景\t城\tCAD\t协\t同\t测\t试\t版")
-        print("="*30)
+        print("\n"*2)
+        print("\t\t\t\t\t华景城信息部")
+        print("="*50)
         # self.step = input()
     def meun(self):
         print("="*30)
@@ -25,7 +27,7 @@ class MOUNTnetdisk(object):
         self.username = input("请输入用户名：")
         self.password = input("请输入密码：")
     def netdisk(self):
-        # self.shellconnetlist=[]
+        self.shellconnetlist=[]
         # step=input("请选择项目：")
         # if(step=="1" and len(step)==1):
         # localpath = 'R:'
@@ -33,17 +35,19 @@ class MOUNTnetdisk(object):
         # self.username = input("请输入用户名：")
         # self.password = input("请输入密码：")
         remotehost = '192.168.13.167'
-        self.commom_connet_use=r"net use \\{remotehost} {pwd} /user:{u_name}".format(remotehost=remotehost,pwd=self.password,u_name=self.username)
+        localpath="R:"
+        remotepath="综合一所资料2019"
+        commom_connet_use=r"net use \\{remotehost} {pwd} /user:{u_name}".format(remotehost=remotehost,pwd=self.password,u_name=self.username)
         # commom2=r"net use {localpath} \\{remotehost}\{remotepath} {pwd} /user:{u_name}".\
         #     format(localpath=localpath,remotehost=self.remotehost,remotepath=remotepath,u_name=self.username,pwd=self.password)
-        # self.commom_connet_disk = r"net use {localpath} \\{remotehost}\{remotepath}". \
-        #     format(localpath=localpath, remotehost=self.remotehost, remotepath=remotepath)
-        # self.shellconnetlist.append(commom_connet_use)
-        # self.shellconnetlist.append(commom_connet_disk)
-        res1=os.system(self.commom_connet_use)
+        commom_connet_disk = r"net use {localpath} \\{remotehost}\{remotepath}". \
+            format(localpath=localpath, remotehost=remotehost, remotepath=remotepath)
+        self.shellconnetlist.append(commom_connet_use+"\n")
+        self.shellconnetlist.append(commom_connet_disk)
+        res1=os.system(commom_connet_use)
         if (res1==0):
             print("登录成功")
-            # os.system(self.commom_connet_disk)
+            os.system(commom_connet_disk)
             # if (res==0):
             #     print("项目文件添加成功")
             #     res2 = os.system("net use /PERSISTENT:yes")
@@ -99,7 +103,7 @@ class MOUNTnetdisk(object):
         localpath=["W:","X:","Y:","Z:"]
         for path in localpath:
             res =os.system("net use {diskpath} /delete ".format(diskpath=path))
-            # input(res)
+            input(res)
 
 # disk = MOUNTnetdisk()
 # disk.netdisk()
