@@ -5,7 +5,7 @@ class STARTUP(MOUNTnetdisk): #这个文件调用有BUG，明天再想办法改�
         path="C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Startup"
         os.chdir(path)
         cmddshell=[]
-        shell="echo off\n"
+        shell="echo off"
         # shell_1=shell_connet_user
         cmddshell.append(shell)
         # cmddshell.append(shell_1)

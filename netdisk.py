@@ -94,16 +94,16 @@ class MOUNTnetdisk(object):
             format(localpath=localpath[i], remotehost=remotehost, remotepath=netdisklist[id][i])
             res =os.system(commome)
             if (res==0):
-                self.shell_connet_disklist.append("\n")
-                self.shell_connet_disklist.append(commome)
+                # self.shell_connet_disklist.append("\n")
+                self.shell_connet_disklist.append(commome+"\n")
                 print("项目文件添加成功")
             else:
                 print("项目文件添加失败")
     def deldisk(self):
         localpath=["W:","X:","Y:","Z:"]
         for path in localpath:
-            res =os.system("net use {diskpath} /delete ".format(diskpath=path))
-            input(res)
+            os.system("net use {diskpath} /delete /y".format(diskpath=path))
+            # input(res)
 
 # disk = MOUNTnetdisk()
 # disk.netdisk()

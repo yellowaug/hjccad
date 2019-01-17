@@ -29,8 +29,18 @@ class RUN(MOUNTnetdisk):
         # self.deldisk()
         # self.netporject(step)
         if(step=="1" and len(step)==1):
-            self.deldisk()
-            self.netporject(step)
+            n=0
+            disklist = self.checknetdisk()
+            for res in disklist:
+                if (res == True):
+                    n = n + 1
+                else:
+                    pass
+            if(n==0):
+                self.netporject(step)
+            else:
+                self.deldisk()
+                self.netporject(step)
             # pass
         elif(step!="9"and  step!="1"and step!='0' and len(step)==1):
             self.deldisk()
