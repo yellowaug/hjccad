@@ -90,12 +90,15 @@ class MOUNTnetdisk(object):
         remotepath_1 = ["protest1","protest2","protest3","protest4"]
         netdisklist.append(remotepath)
         netdisklist.append(remotepath_1)
+        sleepshell="ping 127.0.0.1 -n 6 >nul"
+        self.shell_connet_disklist.append(sleepshell+"\n")
         id=int(inputid)-1
         # print(id)
         # print(inputid)
         # print(type(inputid))
         # username = self.username
         # password = self.password
+
         for i in range(4):
             # commome = r"net use {localpath} \\{remotehost}\{remotepath} {pwd} /user:{u_name}". \
             # format(localpath=localpath[i], remotehost=remotehost, remotepath=remotepath[i], u_name=username, pwd=password)

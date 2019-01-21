@@ -2,11 +2,11 @@ from netdisk import MOUNTnetdisk
 from startup import STARTUP
 import os
 class RUN(MOUNTnetdisk):
-    # def startupfile(self):  #写入连接项目盘启动文件的方法
-    # #     # print(self.remotehost,self.username,self.password)
-    #     file=STARTUP()
-    # #     file.generatefile("start_netdisk",self.shell_connet_disklist)
-    #     file.generatefile("start_login",self.shell_connet_disklist)
+    def startupfile(self):  #写入连接项目盘启动文件的方法
+        # print(self.remotehost,self.username,self.password)
+        file=STARTUP()
+    #     file.generatefile("start_netdisk",self.shell_connet_disklist)
+        file.generatefile("start_disk",self.shell_connet_disklist)
     def checkdatadisk(self):
         s_password=input("请输入登录资料盘的二级密码：")
         if(s_password=="123456"):
@@ -90,7 +90,7 @@ if __name__=="__main__":
         while(1):
             if(res_num==0):
                 program.change_function()
-                # program.startupfile()
+                program.startupfile()
                 os.system("pause")
                 os.system("cls")
             else:
@@ -98,7 +98,7 @@ if __name__=="__main__":
                 res_num = program.loginsys()
                 if (res_num == 0):
                     program.change_function()
-                    # program.startupfile()
+                    program.startupfile()
                     os.system("pause")
                     os.system("cls")
     elif(n==4):
@@ -106,7 +106,7 @@ if __name__=="__main__":
         while (1):
             program.change_function()
             # program.startupfile()
-            # program.startupfile()
+            program.startupfile()
             os.system("pause")
             os.system("cls")
     else:
