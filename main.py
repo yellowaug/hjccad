@@ -2,17 +2,24 @@ from netdisk import MOUNTnetdisk
 from startup import STARTUP
 import os
 class RUN(MOUNTnetdisk):
-    def startupfile(self):
-        # print(self.remotehost,self.username,self.password)
-        file=STARTUP()
-        file.generatefile("start_netdisk",self.shell_connet_disklist)
+    # def startupfile(self):  #写入连接项目盘启动文件的方法
+    # #     # print(self.remotehost,self.username,self.password)
+    #     file=STARTUP()
+    # #     file.generatefile("start_netdisk",self.shell_connet_disklist)
+    #     file.generatefile("start_login",self.shell_connet_disklist)
+    def checkdatadisk(self):
+        s_password=input("请输入登录资料盘的二级密码：")
+        if(s_password=="123456"):
+            return 0
+        else:
+            return 1
     def loginsys(self):
         self.login()
         res =self.netdisk()
         file=STARTUP()
         file.generatefile("start_login",self.shellconnetlist)
         return res
-    def checknetdisk(self): #这个方法有bug所以暂时不用
+    def checknetdisk(self): #检查项目路径是否挂载
         resultlist=[]
         checkpath=[r"W:\\",r"X:\\",r"Y:\\",r"Z:\\"]
         for path in checkpath:
@@ -42,9 +49,21 @@ class RUN(MOUNTnetdisk):
                 self.deldisk()
                 self.netporject(step)
             # pass
-        elif(step!="9"and  step!="1"and step!='0' and len(step)==1):
+        elif(step!="9"and  step!="1"and step!='0' and step!= "8" ):
             self.deldisk()
             self.netporject(step)
+        elif(step=="8"):
+            s_password = input("请输入登录资料盘的二级密码：")
+            if (s_password == "123456"):
+                self.netdatadisk()
+            else:
+                print("请输入正确的二级密码")
+                return 0
+            # logdata = self.checknetdisk()
+            # if (logdata==0):
+            #     self.netdatadisk()
+            # else:
+            #     self.checknetdisk()
         elif(step=="9"and len(step)==1):
             self.deldisk()
         elif(step=="0"and len(step)==1):
@@ -72,7 +91,6 @@ if __name__=="__main__":
             if(res_num==0):
                 program.change_function()
                 # program.startupfile()
-                program.startupfile()
                 os.system("pause")
                 os.system("cls")
             else:
@@ -80,14 +98,14 @@ if __name__=="__main__":
                 res_num = program.loginsys()
                 if (res_num == 0):
                     program.change_function()
-                    program.startupfile()
+                    # program.startupfile()
                     os.system("pause")
                     os.system("cls")
     elif(n==4):
         # program.deldisk()
         while (1):
             program.change_function()
-            program.startupfile()
+            # program.startupfile()
             # program.startupfile()
             os.system("pause")
             os.system("cls")
