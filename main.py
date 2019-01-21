@@ -56,9 +56,10 @@ class RUN(MOUNTnetdisk):
             s_password = input("请输入登录资料盘的二级密码：")
             if (s_password == "123456"):
                 self.netdatadisk()
+                self.change_function()
             else:
                 print("请输入正确的二级密码")
-                return 0
+                self.change_function()
             # logdata = self.checknetdisk()
             # if (logdata==0):
             #     self.netdatadisk()
